@@ -22,8 +22,8 @@ def get_price(coin, *, reference='USD'):
    Throws exceptions on server errors and unrecognized coins
    or currencies.
    '''
-   base_url = "https://chasing-coins.com/api/v1/convert/{0}/{1}"
-   url = base_url.format(coin, reeference)
+   base_url = "http://chasing-coins.com/api/v1/convert/{0}/{1}"
+   url = base_url.format(coin, reference)
    data_from_server = urllib.request.urlopen(url).read()
    string_from_server = data_from_server.decode('utf-8')
    if ("Undefined property" in string_from_server):
@@ -32,20 +32,45 @@ def get_price(coin, *, reference='USD'):
    
    return data['result']
    
+def get_change(coin):
+    '''
+    Returns the change of the requested coin in USD, in the past
+    hour and in the past day.
 
-   
+    @param coin: requested coin to get change from
+    '''
+    base_url = 'http://chasing-coins.com/api/v1/std/coin/{0}'
+    url = base_url.format(coin)
+    data_from_server = urllib.request.urlopen(url).read()
+    string_from_server = data_from_server.decode('utf-8')
+    change = json.loads(string_from_server)
+    result = 'Change in {0} price in the past hour (USD): {1}. Change in {0} price in the past day (USD) {2}. '.format(coin, change['change']['hour'], change['change']['day'])
+
+
+    return result
+
+def main(args):
+   if args.reference != None: 
+      if args.action == 'change':
+         raise Exception('Reference currency cannot be changed when evaluating change.')
+      else:
+         print(get_price(args.coin, reference=args.reference))
+   elif args.action == 'change':
+      print(get_change(args.coin))
+   else:
+     print(get_price(args.coin))
   
 if __name__ == '__main__':
-   parser = argparse.ArgumentParser(description='Get word info from the Ultralingua API')
+   parser = argparse.ArgumentParser()
 
    parser.add_argument('coin', help='the 3-letter ticker symbol of the coin you want to lookup')
 
    parser.add_argument('action',
                        metavar='action',
-                       help='the information you would like on the coin ("price" or "change")'
+                       help='the information you would like on the coin ("price" or "change")',
                        choices=["price", "change"])
 
-   parser.add_argument('reference', 
+   parser.add_argument('--reference', type=str,
                         help='the currency you want to use as a reference when looking up price',
                         required = False)
 

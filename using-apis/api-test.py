@@ -22,15 +22,17 @@ def get_price(coin, *, reference='USD'):
    Throws exceptions on server errors and unrecognized coins
    or currencies.
    '''
-   base_url = "http://chasing-coins.com/api/v1/convert/{0}/{1}"
+   base_url = "https://chasing-coins.com/api/v1/convert/{0}/{1}"
    url = base_url.format(coin, reference)
-   data_from_server = urllib.request.urlopen(url).read()
+   req = urllib.request.Request(url, headers={'User-Agent': 'Mozilla/5.0'})
+   data_from_server = urllib.request.urlopen(req).read()
    string_from_server = data_from_server.decode('utf-8')
    if ("Undefined property" in string_from_server):
       raise Exception("Unrecognised coin or currency. Please use 3-letter ticker symbol.")
    data = json.loads(string_from_server)
    
-   return data['result']
+   response = "The current price of {0} in {1} is {2}".format(coin, reference, data['result'])
+   return response
    
 def get_change(coin):
     '''
@@ -39,9 +41,10 @@ def get_change(coin):
 
     @param coin: requested coin to get change from
     '''
-    base_url = 'http://chasing-coins.com/api/v1/std/coin/{0}'
+    base_url = 'https://chasing-coins.com/api/v1/std/coin/{0}'
     url = base_url.format(coin)
-    data_from_server = urllib.request.urlopen(url).read()
+    req = urllib.request.Request(url, headers={'User-Agent': 'Mozilla/5.0'})
+    data_from_server = urllib.request.urlopen(req).read()
     string_from_server = data_from_server.decode('utf-8')
     change = json.loads(string_from_server)
     result = 'Change in {0} price in the past hour (USD): {1}. Change in {0} price in the past day (USD) {2}. '.format(coin, change['change']['hour'], change['change']['day'])

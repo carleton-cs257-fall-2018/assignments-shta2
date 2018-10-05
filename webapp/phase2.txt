@@ -1,0 +1,15 @@
+Paul Butterfield and Conor Gormally
+
+
+We have downloaded from opensecrets.org/bulk-data/downloads a dataset of extensive information on all donations made to candidates for the United States Congress by individuals, Pacs, and FEC Comittees.
+
+-Nathan checks the table of all donations made to the two Senate candidates running in his state, sorted by size.
+-Alice get a list of candidates that a PAC contributes to, in order to decide whether to donate to them.
+-James wants to know if a candidate has recieved any donations from a PAC that supports gun requations
+-Natalie gets a list of all transfers from a particular PAC to other PACs, to investigate connections between comittees.
+-Sam wants a graph of all candidates in his state, showing how much campaign money they have been given.
+-Mary wants a pie chart detailing what portion of a cacndidates funds came from individuals vs comittees.
+-Greg want to see if two candidates have a different male/female finacial support ratio.
+-Meg wants to know which candidate has gotten donations from more individuals.
+-Frank wants to know which candidate has gotten more donations from individuals refunded.
+-Sarah wants to  know whether or not foreign companies are supporting a specific candidate.

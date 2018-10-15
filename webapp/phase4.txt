@@ -1,24 +1,24 @@
 CREATE TABLE pacs(
    id TEXT,
    name TEXT,
-   'party' TEXT,
-   indusrty TEXT,
+   party TEXT,
+   industry TEXT,
    sensitive BIT,
    foreign BIT
 );
 
 CREATE TABLE candidates(
    cid TEXT,
-   'first_name' TEXT,
-   'last_name' TEXT,
-   'party' TEXT,
-   'state' TEXT,
-   'seat' TEXT
+   first_name TEXT,
+   last_name TEXT,
+   party TEXT,
+   state TEXT,
+   seat TEXT
 );
 
 CREATE TABLE indivs (
    id TEXT,
-   'state' TEXT,
+   state TEXT,
    gendedr TEXT,
    orgName TEXT,
    industry TEXT
@@ -45,9 +45,9 @@ EXAMPLE: http://whatever.com/candidates
      {'first_name': 'Henry', 'last_name': 'Johnson', 'party': 'R', 'state': 'PA', 'seat': '17'}
      ...]
 
-SYNOPSIS: Get a list of all candidates from this cycle with optional filters
+SYNOPSIS: Get a list of all candidates from this cycle with optional filters (name, state, seat, party)
 QUERY: /candidates?state=VA
-RESPONSE: a list of dictionaries with candidate information 
+RESPONSE: a list of dictionaries with candidate information
 EXAMPLE: http://whatever.com/candidates?state=VA
 
      [{'first_name': 'Baker', 'last_name': 'Mayfield', 'party': 'L', 'state': 'VA', 'seat': '14'}
@@ -62,13 +62,13 @@ SYNOPSIS: Get a list of all PACs from this cycle
 QUERY: /pacs
 RESPONSE: a list of dictionaries with PAC information
 EXAMPLE: http://whatever.com/pacs
-    [{'name': 'Democratic Republicans for a New America', 'party': 'L', 'industry': 'C1000', 'foreign': true, 'sensitive': true}
-     {'name': 'Democratic Republicans for the Old America', 'party': 'U', 'industry': 'A2000', 'foreign': false, 'sensitive': true}
-     {'name': 'You get a Pipeline and YOU get a Pipeline', 'party': 'R', 'industry': 'B3000', 'foreign': false, 'sensitive': true}
-     {'name': 'Republicans for when Democrats were Republicans', 'party': 'R', 'industry': 'D5200', 'foreign': false, 'sensitive': false}
-     {'name': 'Unknowns for the Unknown Agenda', 'party': 'D', 'industry': 'E3300', 'foreign': true, 'sensitive': false}
-     {'name': 'Geniuses out for Themselves', 'party': 'I', 'industry': 'T1000', 'foreign': false, 'sensitive': false}
-     {'name': 'Totally Not a Wing of the Russian Shadow Government', 'party': 'U', 'industry': 'C5120', 'foreign': false, 'sensitive': true}
+    [{'name': 'Democratic Republicans for a New America', 'party': 'L', 'industry': 'Architectural services', 'foreign': true, 'sensitive': true}
+     {'name': 'Democratic Republicans for the Old America', 'party': 'U', 'industry': 'Agriculture', 'foreign': false, 'sensitive': true}
+     {'name': 'You get a Pipeline and YOU get a Pipeline', 'party': 'R', 'industry': 'Oil & Gas', 'foreign': false, 'sensitive': true}
+     {'name': 'Republicans for when Democrats were Republicans', 'party': 'R', 'industry': 'Coal Mining', 'foreign': false, 'sensitive': false}
+     {'name': 'Unknowns for the Unknown Agenda', 'party': 'D', 'industry': 'Investors', 'foreign': true, 'sensitive': false}
+     {'name': 'Geniuses out for Themselves', 'party': 'I', 'industry': 'Computer Software', 'foreign': false, 'sensitive': false}
+     {'name': 'Totally Not a Wing of the Russian Shadow Government', 'party': 'U', 'industry': 'International trade associations', 'foreign': false, 'sensitive': true}
      ...]
 
 SYNOPSIS: Get a list of all contributions to a specific candidate

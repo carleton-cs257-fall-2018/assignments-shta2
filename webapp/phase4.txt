@@ -1,0 +1,33 @@
+CREATE TABLE pacs(
+   id TEXT,
+   name TEXT,
+   party TEXT,
+   indusrty TEXT,
+   sensitive BIT,
+   foreign BIT
+);
+
+CREATE TABLE candidates(
+   cid TEXT,
+   first_name TEXT,
+   last_name TEXT,
+   party TEXT,
+   state TEXT,
+   seat TEXT
+);
+
+CREATE TABLE indivs (
+   id TEXT,
+   state TEXT,
+   gendedr TEXT,
+   orgName TEXT,
+   industry TEXT
+);
+
+CREATE TABLE transactions(
+   date DATE,
+   amount INT,
+   contribID TEXT,
+   reccipID TEXT,
+   reccipType TEXT
+);

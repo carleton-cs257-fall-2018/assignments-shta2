@@ -56,11 +56,17 @@ class api_tests(unittest.TestCase):
     def test_transactions_to_pac():
         pass
 
-    def test_transactions_indiv_to_candidate():
+    def test_transactions_indiv_to_pac():
         pass
 
-    def test_transactions_pac_to_candidate():
+    def test_invalid_candidate_name():
         pass
 
-    def test_transactions_pac_to_pac():
+    def test_invalid_pac_name():
+        pass
+
+    def test_foreign_pacs_to_candidate():
+        pass
+
+    def test_transactions_indiv_to_candidate_by_state():
         pass

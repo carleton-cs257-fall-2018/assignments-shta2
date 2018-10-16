@@ -18,8 +18,9 @@ CREATE TABLE candidates(
 
 CREATE TABLE indivs (
    id TEXT,
+   name TEXT,
    state TEXT,
-   gendedr TEXT,
+   gender TEXT,
    orgName TEXT,
    industry TEXT
 );

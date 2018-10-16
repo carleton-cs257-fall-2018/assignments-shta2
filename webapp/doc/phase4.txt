@@ -29,8 +29,9 @@ CREATE TABLE transactions(
    date DATE,
    amount INT,
    contribID TEXT,
-   reccipID TEXT,
-   reccipType TEXT
+   contribType TEXT,
+   recipID TEXT,
+   recipType TEXT
 );
 
 QUERIES
@@ -88,19 +89,19 @@ SYNOPSIS: Get a list of all contributions from a specific PAC
 QUERY: /transactions/from_PAC/<PAC_name>
 RESPONSE: a list of contributions from this specific PAC
 EXAMPLE: http://whatever.com/transactions/from_PAC/Democratic+Republicans+for+a+New+America
-    [{'date': '2018-01-07', 'amount': 3000, 'name': 'John Doe', 'reccipType': 'Candidate'}
-     {'date': '2018-04-15', 'amount': 8000, 'name': 'David Franks', 'reccipType': 'Candidate'}
-     {'date': '2018-04-19', 'amount': 150000, 'name': 'Jasmine Williams', 'reccipType': 'Candidate'}
-     {'date': '2018-08-11', 'amount': 350000, 'name': 'Unknowns for the Unknown Agenda', 'reccipType': 'PAC'}
+    [{'date': '2018-01-07', 'amount': 3000, 'name': 'John Doe', 'recipType': 'Candidate'}
+     {'date': '2018-04-15', 'amount': 8000, 'name': 'David Franks', 'recipType': 'Candidate'}
+     {'date': '2018-04-19', 'amount': 150000, 'name': 'Jasmine Williams', 'recipType': 'Candidate'}
+     {'date': '2018-08-11', 'amount': 350000, 'name': 'Unknowns for the Unknown Agenda', 'recipType': 'PAC'}
      ...]     
 
      
-SYNOPSIS: Get a list of all transactions with multiple available filters
+SYNOPSIS: Get a list of all transactions with multiple available filters (start_date, end_date, min_amount, max_amount, contribType)
 QUERY: /transactions/
 RESPONSE: a list of contributions from this specific PAC
-EXAMPLE: http://whatever.com/transactions/from_PAC/Democratic+Republicans+for+a+New+America
-    [{'date': '2018-01-07', 'amount': 3000, 'name': 'John Doe', 'reccipType': 'Candidate'}
-     {'date': '2018-04-15', 'amount': 8000, 'name': 'David Franks', 'reccipType': 'Candidate'}
-     {'date': '2018-04-19', 'amount': 150000, 'name': 'Jasmine Williams', 'reccipType': 'Candidate'}
-     {'date': '2018-08-11', 'amount': 350000, 'name': 'Unknowns for the Unknown Agenda', 'reccipType': 'PAC'}
+EXAMPLE: http://whatever.com/transactions?min_amount=2000
+    [{'date': '2018-01-07', 'amount': 3000, 'name': 'John Doe', 'recipType': 'Candidate'}
+     {'date': '2018-04-15', 'amount': 8000, 'name': 'David Franks', 'recipType': 'Candidate'}
+     {'date': '2018-04-19', 'amount': 150000, 'name': 'Jasmine Williams', 'recipType': 'Candidate'}
+     {'date': '2018-08-11', 'amount': 350000, 'name': 'Unknowns for the Unknown Agenda', 'recipType': 'PAC'}
      ...]

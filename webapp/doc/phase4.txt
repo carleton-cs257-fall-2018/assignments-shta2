@@ -21,7 +21,6 @@ CREATE TABLE indivs (
    name TEXT,
    state TEXT,
    gender TEXT,
-   orgName TEXT,
    industry TEXT
 );
 

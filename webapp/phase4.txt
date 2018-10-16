@@ -74,11 +74,32 @@ EXAMPLE: http://whatever.com/pacs
 SYNOPSIS: Get a list of all contributions to a specific candidate
 QUERY: /transactions/to_candidate/<candidate_name>
 RESPONSE: a list of contributions to this specific candidate
-EXAMPLE: http://whatever.com/transactions/to_candidate/John_Doe
+EXAMPLE: http://whatever.com/transactions/to_candidate/John+Doe
     [{'date': '2018-01-07', 'amount': 3000, 'name': 'Democratic Republicans for a New America', 'contribType': 'PAC'}
      {'date': '2018-04-15', 'amount': 8000, 'name': 'David Johnson', 'contribType': 'Indiv'}
      {'date': '2018-04-19', 'amount': 150000, 'name': 'Unknowns for the Unknown Agenda', 'contribType': 'PAC'}
      {'date': '2018-05-28', 'amount': 350, 'name': 'Sally Davis', 'contribType': 'Indiv'}
      {'date': '2018-06-05', 'amount': -350, 'name': 'Sally Davis', 'contribType': 'Indiv'}
      {'date': '2018-08-11', 'amount': 350000, 'name': 'Unknowns for the Unknown Agenda', 'contribType': 'PAC'}
+     ...]
+     
+SYNOPSIS: Get a list of all contributions from a specific PAC
+QUERY: /transactions/from_PAC/<PAC_name>
+RESPONSE: a list of contributions from this specific PAC
+EXAMPLE: http://whatever.com/transactions/from_PAC/Democratic+Republicans+for+a+New+America
+    [{'date': '2018-01-07', 'amount': 3000, 'name': 'John Doe', 'reccipType': 'Candidate'}
+     {'date': '2018-04-15', 'amount': 8000, 'name': 'David Franks', 'reccipType': 'Candidate'}
+     {'date': '2018-04-19', 'amount': 150000, 'name': 'Jasmine Williams', 'reccipType': 'Candidate'}
+     {'date': '2018-08-11', 'amount': 350000, 'name': 'Unknowns for the Unknown Agenda', 'reccipType': 'PAC'}
+     ...]     
+
+     
+SYNOPSIS: Get a list of all transactions with multiple available filters
+QUERY: /transactions/
+RESPONSE: a list of contributions from this specific PAC
+EXAMPLE: http://whatever.com/transactions/from_PAC/Democratic+Republicans+for+a+New+America
+    [{'date': '2018-01-07', 'amount': 3000, 'name': 'John Doe', 'reccipType': 'Candidate'}
+     {'date': '2018-04-15', 'amount': 8000, 'name': 'David Franks', 'reccipType': 'Candidate'}
+     {'date': '2018-04-19', 'amount': 150000, 'name': 'Jasmine Williams', 'reccipType': 'Candidate'}
+     {'date': '2018-08-11', 'amount': 350000, 'name': 'Unknowns for the Unknown Agenda', 'reccipType': 'PAC'}
      ...]

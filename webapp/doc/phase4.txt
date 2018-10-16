@@ -21,7 +21,6 @@ CREATE TABLE indivs (
    name TEXT,
    state TEXT,
    gender TEXT,
-   orgName TEXT,
    industry TEXT
 );
 
@@ -29,6 +28,7 @@ CREATE TABLE transactions(
    date DATE,
    amount INT,
    contribID TEXT,
+   contribType TEXT,
    reccipID TEXT,
    reccipType TEXT
 );

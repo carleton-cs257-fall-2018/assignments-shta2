@@ -54,7 +54,7 @@ class api_tests(unittest.TestCase):
         self.assertEquals(get_data('trasactions/to_candidate/David'), [{'date': '2017-10-04', 'amount':'25',
                               'contribID': '4alarvf3qvlg', 'contribType': 'indiv', 'recipID': '7f5ozph2h', 'recipType': 'cand'}])
 
-    def test_transactions_to_candidate_by_contribType();
+    def test_transactions_to_candidate_by_contribType():
         self.assertEquals(get_data('transactions/to_candidate/Maddison?contribType=indiv'), get_data('transactions?max_amount = 20&min_amount=0'))
 
     def test_transactions_from_pac():

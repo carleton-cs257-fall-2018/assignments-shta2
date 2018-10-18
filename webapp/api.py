@@ -12,7 +12,7 @@ user = 'yourusername'
 password = 'yourdatabasepassword'
 
 try:
-    connection = psycopg2.connect(database=perlman@mathcs.carleton.edu, user=user, password=password)
+    connection = psycopg2.connect(database='butterfieldp@perlman.mathcs.carleton.edu', user='user', password='guest')
 except Exception as e:
     print(e)
     exit()

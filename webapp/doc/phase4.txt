@@ -1,37 +1,52 @@
 CREATE TABLE pacs(
    id TEXT,
    name TEXT,
-   party TEXT,
-   industry TEXT,
+   party PARTY,
+   industry_ID TEXT,
    sensitive BIT,
    foreign BIT
 );
 
 CREATE TABLE candidates(
-   cid TEXT,
+   id TEXT,
    first_name TEXT,
    last_name TEXT,
-   party TEXT,
-   state TEXT,
+   party PARTY,
+   state_ID INT,
    seat TEXT
 );
 
-CREATE TABLE indivs (
+CREATE TABLE individual_donors (
    id TEXT,
    name TEXT,
-   state TEXT,
+   state_ID INT,
    gender TEXT,
-   industry TEXT
+   industry_ID TEXT
 );
 
 CREATE TABLE transactions(
    date DATE,
    amount INT,
-   contribID TEXT,
-   contribType TEXT,
-   recipID TEXT,
-   recipType TEXT
+   contributor_ID TEXT,
+   contributor_type TEXT,
+   recipient_ID TEXT,
+   recipient_type TEXT
 );
+
+CREATE TABLE industries(
+    id TEXT,
+    name TEXT
+);
+
+CREATE TABLE states(
+    id INT,
+    name STATE
+)
+
+CREATE TYPE party as ENUM ('Democrat', 'Republican', 'Libertarian', '3rd Party', 'Unknown')
+
+CREATE TYPE entity_type as ENUM ('PAC', 'Candidate', 'Individual Donor')
+
 
 QUERIES
 
@@ -83,7 +98,7 @@ EXAMPLE: http://whatever.com/transactions/to_candidate/John+Doe
      {'date': '2018-06-05', 'amount': -350, 'name': 'Sally Davis', 'contribType': 'Indiv'}
      {'date': '2018-08-11', 'amount': 350000, 'name': 'Unknowns for the Unknown Agenda', 'contribType': 'PAC'}
      ...]
-     
+
 SYNOPSIS: Get a list of all contributions from a specific PAC
 QUERY: /transactions/from_PAC/<PAC_name>
 RESPONSE: a list of contributions from this specific PAC
@@ -92,9 +107,9 @@ EXAMPLE: http://whatever.com/transactions/from_PAC/Democratic+Republicans+for+a+
      {'date': '2018-04-15', 'amount': 8000, 'name': 'David Franks', 'recipType': 'Candidate'}
      {'date': '2018-04-19', 'amount': 150000, 'name': 'Jasmine Williams', 'recipType': 'Candidate'}
      {'date': '2018-08-11', 'amount': 350000, 'name': 'Unknowns for the Unknown Agenda', 'recipType': 'PAC'}
-     ...]     
+     ...]
 
-     
+
 SYNOPSIS: Get a list of all transactions with multiple available filters (start_date, end_date, min_amount, max_amount, contribType)
 QUERY: /transactions/
 RESPONSE: a list of contributions from this specific PAC

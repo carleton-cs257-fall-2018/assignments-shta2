@@ -7,6 +7,10 @@ import psycopg2
 
 app = flask.Flask(__name__)
 
+database = 'yourdatabasename'
+user = 'yourusername'
+password = 'yourdatabasepassword'
+
 try:
     connection = psycopg2.connect(database=perlman@mathcs.carleton.edu, user=user, password=password)
 except Exception as e:

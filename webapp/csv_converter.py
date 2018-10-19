@@ -7,13 +7,12 @@ import sys
 import csv
 import re
 
-def creat_transactions():
+def create_transactions():
     return transactions[]
 
 def load_industries_from_codes(tsv_file_name):
     tsv_file = open(tsv_file_name, encoding='utf-8')
     reader = csv.reader(tsv_file, delimiter = '\t')
-
     industries = []
     for row in reader:
         if(row[0] != 'Catcode'):
@@ -49,6 +48,8 @@ def load_candidates_from_csv(csv_file_name):
 
     candidates = []
     for row in reader:
+        if(depipe(row[5])[0] == 'P'):
+            continue
         assert len(row) == 12
         id = depipe(row[1])
         lastname_firstname_party = depipe(row[3])
@@ -64,18 +65,19 @@ def load_candidates_from_csv(csv_file_name):
     csv_file.close()
     return candidates
 
-def load_individuals_and_individual_transactions_from_csv(csv_file_name, transactions):
+def load_individuals_and_individual_transactions_from_csv(csv_file_name):
     csv_file = open(csv_file_name, encoding='utf-8')
     reader = csv.reader(csv_file)
 
     individual_donors = []
-    transactions = []
     for row in reader:
         assert len(row) == 23
         id = depipe(row[2])
         name = depipe(row[3])
         state = depipe(row[12])
         gender = depipe(row[18])
+        if(gender == 'N'):
+            gender = 'U'
         industry_id = depipe(row[7])
         date = depipe(row[8])
         amount = depipe(row[9])
@@ -95,7 +97,7 @@ def load_individuals_and_individual_transactions_from_csv(csv_file_name, transac
     csv_file.close()
     return candidates
 
-def load_pac_to_candidate_transactions_from_csv(csv_file_name, transactions):
+def load_pac_to_candidate_transactions_from_csv(csv_file_name):
     csv_file = open(csv_file_name, encoding='utf-8')
     reader = csv.reader(csv_file)
 
@@ -111,18 +113,21 @@ def load_pac_to_candidate_transactions_from_csv(csv_file_name, transactions):
         transactions.append(transaction)
     csv_file.close()
 
-
-def load_pac_to_pac_transactions_from_csv(csv_file_name, transactions):
+def load_pac_to_pac_transactions_from_csv(csv_file_name):
     csv_file = open(csv_file_name, encoding='utf-8')
     reader = csv.reader(csv_file)
 
     for row in reader:
         date = depipe(row[5])
         amount = depipe(row[4])
-        contributor_id = depipe(row[2])
-        contributor_type = 'individual',
-        recipient_id = depipe(row[3])
-        recipient_type = 'Candidate'
+        if(depipe(row[21])[0] == 1)
+            contributor_id = depipe(row[14)
+            recipient_id = depipe(row[2])
+        else:
+            contributor_id = depipe(row[2])
+            recipient_id = depipe(row[14])
+        contributor_type = 'PAC',
+        recipient_type = 'PAC'
         transaction = {'date': date, 'amount': amount, 'contributor_id': contributor_id, 'contributor_type': contributor_type,
                         'recipient_id': recipient_id, 'recipient_type': recipient_type}
         transactions.append(transaction)
@@ -130,3 +135,60 @@ def load_pac_to_pac_transactions_from_csv(csv_file_name, transactions):
 
 def depipe(piped_string):
     return piped_string[1:-1]
+
+def save_industries_table(industries, csv_file_name):
+    ''' Save the books in CSV form, with each row containing
+        (id, title, publication year). '''
+    output_file = open(csv_file_name, 'w', encoding='utf-8')
+    writer = csv.writer(output_file)
+    for industry in industries:
+        industry_row = [industry['industry_id'], industry['industry_name']]
+        writer.writerow(industry_row)
+    output_file.close()
+
+def save_pacs_table(pacs, csv_file_name):
+    ''' Save the books in CSV form, with each row containing
+        (id, title, publication year). '''
+    output_file = open(csv_file_name, 'w', encoding='utf-8')
+    writer = csv.writer(output_file)
+    for pac in pacs:
+        pac_row = [pac['id'], pac['name'], pac['party'], pac['industry_id'], pac['sensitive'], pac['foreign'] ]
+        writer.writerow(pac_row)
+    output_file.close()
+
+def save_candidates_table(candidates, csv_file_name):
+    ''' Save the books in CSV form, with each row containing
+        (id, title, publication year). '''
+    output_file = open(csv_file_name, 'w', encoding='utf-8')
+    writer = csv.writer(output_file)
+    for candidate in candidates:
+        candidate_row = [candidate['id'], candidate['first_name'], candidate['last_name'], candidate['party'],
+                         candidate['state'], candidate['seat']]
+        writer.writerow(candidate_row)
+    output_file.close()
+
+def save_individuals_table(individual_donors, csv_file_name):
+    ''' Save the books in CSV form, with each row containing
+        (id, title, publication year). '''
+    output_file = open(csv_file_name, 'w', encoding='utf-8')
+    writer = csv.writer(output_file)
+    for individual in individual_donors:
+        indidvidual_row = [individual['id'], individual['name'], individual['state'], individual['gender'],
+                         individual['industry_id']]
+        writer.writerow(indidvidual_row)
+    output_file.close()
+
+def save_transactions_table(csv_file_name):
+    ''' Save the books in CSV form, with each row containing
+        (id, title, publication year). '''
+    output_file = open(csv_file_name, 'w', encoding='utf-8')
+    writer = csv.writer(output_file)
+    for transaction in transactions:
+        transaction_row = [transaction['date'], transaction['amount'], transaction['contributor_id'], transaction['contributor_type'],
+                           transaction['recipient_id'], transaction['recipient_type']]
+        writer.writerow(transaction_row)
+    output_file.close()
+
+if __name__ == '__main__':
+    save_industries_table(load_industries_from_codes(codes.txt), industries.csv)
+    save_pacs_table(load_pacs_from_csv(cmtes18.txt), pacs.csv)

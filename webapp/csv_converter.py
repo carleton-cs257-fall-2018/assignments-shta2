@@ -31,7 +31,7 @@ def load_pacs_from_csv(csv_file_name):
 
     pacs = []
     for row in reader:
-        if not(len(row) == 14)
+        if not(len(row) == 14):
             print(row)
         #assert len(row) == 14
         id = depipe(row[1])

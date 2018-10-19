@@ -8,7 +8,8 @@ import csv
 import re
 
 def create_transactions():
-    return transactions[]
+    transactions = []
+    return transactions
 
 def load_industries_from_codes(tsv_file_name):
     tsv_file = open(tsv_file_name, encoding='utf-8')
@@ -21,7 +22,7 @@ def load_industries_from_codes(tsv_file_name):
             industry_name = row[1]
             industry = {'industry_id': industry_id, 'industry_name': industry_name}
             industries.append(industry)
-    csv_file.close()
+    tsv_file.close()
     return industries
 
 def load_pacs_from_csv(csv_file_name):
@@ -30,7 +31,9 @@ def load_pacs_from_csv(csv_file_name):
 
     pacs = []
     for row in reader:
-        assert len(row) == 14
+        if not(len(row) == 14)
+            print(row)
+        #assert len(row) == 14
         id = depipe(row[1])
         name = depipe(row[2])
         party = depipe(row[8])
@@ -120,8 +123,8 @@ def load_pac_to_pac_transactions_from_csv(csv_file_name):
     for row in reader:
         date = depipe(row[5])
         amount = depipe(row[4])
-        if(depipe(row[21])[0] == 1)
-            contributor_id = depipe(row[14)
+        if(depipe(row[21])[0] == 1):
+            contributor_id = depipe(row[14])
             recipient_id = depipe(row[2])
         else:
             contributor_id = depipe(row[2])
@@ -190,5 +193,11 @@ def save_transactions_table(csv_file_name):
     output_file.close()
 
 if __name__ == '__main__':
-    save_industries_table(load_industries_from_codes(codes.txt), industries.csv)
-    save_pacs_table(load_pacs_from_csv(cmtes18.txt), pacs.csv)
+    save_industries_table(load_industries_from_codes('doc/codes.txt'), 'industries.csv')
+    save_pacs_table(load_pacs_from_csv('/Users/ConorGormally/Documents/Fall18/CS/Original_CSV_Files/cmtes18.txt'), 'pacs.csv')
+    save_candidates_table(load_candidates_from_csv('/Users/ConorGormally/Documents/Fall18/CS/Original_CSV_Files/cands18.txt'), 'candidates.csv')
+    create_transactions();
+    save_individuals_table(load_individuals_and_individual_transactions_from_csv('/Users/ConorGormally/Documents/Fall18/CS/Original_CSV_Files/indivs18.txt'), 'individual_donors.csv')
+    load_pac_to_candidate_transactions_from_csv('/Users/ConorGormally/Documents/Fall18/CS/Original_CSV_Files/pacs18.txt')
+    load_pac_to_pac_transactions_from_csv('/Users/ConorGormally/Documents/Fall18/CS/Original_CSV_Files/pacs_other18.txt')
+    save_transactions_table('transactions.csv')

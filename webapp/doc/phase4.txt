@@ -12,25 +12,25 @@ CREATE TABLE candidates(
    first_name TEXT,
    last_name TEXT,
    party PARTY,
-   state_ID INT,
+   state TEXT,
    seat TEXT
 );
 
 CREATE TABLE individual_donors (
    id TEXT,
    name TEXT,
-   state_ID INT,
-   gender TEXT,
+   state TEXT,
+   gender GENDER,
    industry_ID TEXT
 );
 
 CREATE TABLE transactions(
    date DATE,
    amount INT,
-   contributor_ID TEXT,
-   contributor_type TEXT,
-   recipient_ID TEXT,
-   recipient_type TEXT
+   contributor_id TEXT,
+   contributor_type ENTITY_TYPE,
+   recipient_id TEXT,
+   recipient_type ENTITY_TYPE
 );
 
 CREATE TABLE industries(
@@ -38,14 +38,12 @@ CREATE TABLE industries(
     name TEXT
 );
 
-CREATE TABLE states(
-    id INT,
-    name STATE
-)
 
-CREATE TYPE party as ENUM ('Democrat', 'Republican', 'Libertarian', '3rd Party', 'Unknown')
+CREATE TYPE party as ENUM ('Democrat', 'Republican', 'Libertarian', '3rd Party', 'Unknown');
 
-CREATE TYPE entity_type as ENUM ('PAC', 'Candidate', 'Individual Donor')
+CREATE TYPE entity_type as ENUM ('PAC', 'Candidate', 'Individual Donor');
+
+CREATE TYPE gender as ENUM ('M', 'F', 'U');
 
 
 QUERIES

@@ -31,7 +31,7 @@ def load_pacs_from_csv(csv_file_name):
 
     pacs = []
     for row in reader:
-        if not(len(row) == 14)
+        if not(len(row) == 14):
             print(row)
         #assert len(row) == 14
         id = depipe(row[1])
@@ -193,6 +193,8 @@ def save_transactions_table(csv_file_name):
     output_file.close()
 
 if __name__ == '__main__':
+    data_location = 'Users\pbsht\cs257\contributions_data\CampaignFin18\'
+    dial = csv.Sniffer().sniff('|2018|,|H8AR03074|,|N00041300|,|Josh Mahony (D)|,|D|,|AR03|,|    |,|Y|,|Y|,|C|,|DC|,| |')
     save_industries_table(load_industries_from_codes('doc/codes.txt'), 'industries.csv')
     save_pacs_table(load_pacs_from_csv('/Users/ConorGormally/Documents/Fall18/CS/Original_CSV_Files/cmtes18.txt'), 'pacs.csv')
     save_candidates_table(load_candidates_from_csv('/Users/ConorGormally/Documents/Fall18/CS/Original_CSV_Files/cands18.txt'), 'candidates.csv')

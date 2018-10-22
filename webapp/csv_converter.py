@@ -27,7 +27,7 @@ def load_industries_from_codes(tsv_file_name):
 
 def load_pacs_from_csv(csv_file_name):
     csv_file = open(csv_file_name, encoding='utf-8')
-    reader = csv.reader(csv_file)
+    reader = csv.reader(csv_file,  quotechar = '|')
 
     pacs = []
     for row in reader:
@@ -47,7 +47,7 @@ def load_pacs_from_csv(csv_file_name):
 
 def load_candidates_from_csv(csv_file_name):
     csv_file = open(csv_file_name, encoding='utf-8')
-    reader = csv.reader(csv_file)
+    reader = csv.reader(csv_file,  quotechar = '|')
 
     candidates = []
     for row in reader:
@@ -59,9 +59,9 @@ def load_candidates_from_csv(csv_file_name):
         name_party_list = lastname_firstname_party.split(' ')
         party = depipe(name_party_list[-1])
         last_name = name_party_list[-2]
-        first_name = name_party_list[:-2]
-        state = depipe(row[5])[0:1]
-        seat = depipe(row[5])[2:3]
+        first_name = " ".join(name_party_list[:-2])
+        state = depipe(row[5])[0:2]
+        seat = depipe(row[5])[2:4]
         candidate = {'id': id, 'first_name': first_name, 'last_name': last_name, 'party':party,
                      'state': state, 'seat': seat}
         candidates.append(candidate)
@@ -69,8 +69,8 @@ def load_candidates_from_csv(csv_file_name):
     return candidates
 
 def load_individuals_and_individual_transactions_from_csv(csv_file_name):
-    csv_file = open(csv_file_name, encoding='utf-8')
-    reader = csv.reader(csv_file)
+    csv_file = open(csv_file_name, encoding='utf-8', errors = 'ignore')
+    reader = csv.reader(csv_file,  quotechar = '|', lineterminator = '\n')
 
     individual_donors = []
     for row in reader:
@@ -98,11 +98,11 @@ def load_individuals_and_individual_transactions_from_csv(csv_file_name):
         individual_donors.append(individual_donor)
         transactions.append(transaction)
     csv_file.close()
-    return candidates
+    return individual_donors
 
 def load_pac_to_candidate_transactions_from_csv(csv_file_name):
     csv_file = open(csv_file_name, encoding='utf-8')
-    reader = csv.reader(csv_file)
+    reader = csv.reader(csv_file, quotechar = '|')
 
     for row in reader:
         date = depipe(row[5])
@@ -118,7 +118,7 @@ def load_pac_to_candidate_transactions_from_csv(csv_file_name):
 
 def load_pac_to_pac_transactions_from_csv(csv_file_name):
     csv_file = open(csv_file_name, encoding='utf-8')
-    reader = csv.reader(csv_file)
+    reader = csv.reader(csv_file, quotechar = '|')
 
     for row in reader:
         date = depipe(row[5])
@@ -137,7 +137,7 @@ def load_pac_to_pac_transactions_from_csv(csv_file_name):
     csv_file.close()
 
 def depipe(piped_string):
-    return piped_string[1:-1]
+    return piped_string#[1:-1]
 
 def save_industries_table(industries, csv_file_name):
     ''' Save the books in CSV form, with each row containing
@@ -193,12 +193,12 @@ def save_transactions_table(csv_file_name):
     output_file.close()
 
 if __name__ == '__main__':
-    data_location = 'Users\pbsht\cs257\contributions_data\CampaignFin18\'
+    data_location = 'Users\pbsht\cs257\contributions_data\CampaignFin18\\'
     dial = csv.Sniffer().sniff('|2018|,|H8AR03074|,|N00041300|,|Josh Mahony (D)|,|D|,|AR03|,|    |,|Y|,|Y|,|C|,|DC|,| |')
     save_industries_table(load_industries_from_codes('doc/codes.txt'), 'industries.csv')
     save_pacs_table(load_pacs_from_csv('/Users/ConorGormally/Documents/Fall18/CS/Original_CSV_Files/cmtes18.txt'), 'pacs.csv')
     save_candidates_table(load_candidates_from_csv('/Users/ConorGormally/Documents/Fall18/CS/Original_CSV_Files/cands18.txt'), 'candidates.csv')
-    create_transactions();
+    transactions = create_transactions();
     save_individuals_table(load_individuals_and_individual_transactions_from_csv('/Users/ConorGormally/Documents/Fall18/CS/Original_CSV_Files/indivs18.txt'), 'individual_donors.csv')
     load_pac_to_candidate_transactions_from_csv('/Users/ConorGormally/Documents/Fall18/CS/Original_CSV_Files/pacs18.txt')
     load_pac_to_pac_transactions_from_csv('/Users/ConorGormally/Documents/Fall18/CS/Original_CSV_Files/pacs_other18.txt')

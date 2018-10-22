@@ -3,8 +3,8 @@ CREATE TABLE pacs(
    name TEXT,
    party PARTY,
    industry_ID TEXT,
-   sensitive BIT,
-   foreign BIT
+   sensitive BOOLEAN,
+   international BOOLEAN
 );
 
 CREATE TABLE candidates(
@@ -39,7 +39,7 @@ CREATE TABLE industries(
 );
 
 
-CREATE TYPE party as ENUM ('Democrat', 'Republican', 'Libertarian', '3rd Party', 'Unknown');
+CREATE TYPE party as ENUM ('Democrat', 'Republican', 'Independent', 'Libertarian', '3rd Party', 'Unknown');
 
 CREATE TYPE entity_type as ENUM ('PAC', 'Candidate', 'Individual Donor');
 

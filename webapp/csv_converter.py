@@ -73,16 +73,20 @@ def load_individuals_and_individual_transactions_from_csv(csv_file_name):
     reader = csv.reader(csv_file,  quotechar = '|')
 
     individual_donors = []
+    repeat_donor_check = set([])
     lineNum = 0
     for row in reader:
         assert len(row) == 23
         id = row[2]
+        if(id in repeat_donor_check):
+            continue
+        repeat_donor_check.add(id)
         name = row[3]
         state = row[12]
         gender = row[18]
         if(gender in ['m', 'M', 'Male', 'male']):
             gender = 'M'
-        if(gender in ['f', 'F', 'Female', 'female']):
+        elif(gender in ['f', 'F', 'Female', 'female']):
             gender = 'F'
         else:
             gender = 'U'

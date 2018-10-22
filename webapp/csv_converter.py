@@ -70,7 +70,7 @@ def load_candidates_from_csv(csv_file_name):
 
 def load_individuals_and_individual_transactions_from_csv(csv_file_name):
     csv_file = open(csv_file_name, encoding='utf-8', errors = 'ignore')
-    reader = csv.reader(csv_file,  quotechar = '|', lineterminator = '\n')
+    reader = csv.reader(csv_file,  quotechar = '|')
 
     individual_donors = []
     for row in reader:
@@ -193,13 +193,16 @@ def save_transactions_table(csv_file_name):
     output_file.close()
 
 if __name__ == '__main__':
-    data_location = 'Users\pbsht\cs257\contributions_data\CampaignFin18\\'
+    pauls_location = 'Users\pbsht\cs257\contributions_data\CampaignFin18\\'
+    lab_location = '/Accounts/butterfieldp/Desktop/cs257/'
+    data_location = lab_location
+    
     dial = csv.Sniffer().sniff('|2018|,|H8AR03074|,|N00041300|,|Josh Mahony (D)|,|D|,|AR03|,|    |,|Y|,|Y|,|C|,|DC|,| |')
     save_industries_table(load_industries_from_codes('doc/codes.txt'), 'industries.csv')
-    save_pacs_table(load_pacs_from_csv('/Users/ConorGormally/Documents/Fall18/CS/Original_CSV_Files/cmtes18.txt'), 'pacs.csv')
-    save_candidates_table(load_candidates_from_csv('/Users/ConorGormally/Documents/Fall18/CS/Original_CSV_Files/cands18.txt'), 'candidates.csv')
+    save_pacs_table(load_pacs_from_csv(data_location + 'cmtes18.txt'), 'pacs.csv')
+    save_candidates_table(load_candidates_from_csv(data_location + 'cands18.txt'), 'candidates.csv')
     transactions = create_transactions();
-    save_individuals_table(load_individuals_and_individual_transactions_from_csv('/Users/ConorGormally/Documents/Fall18/CS/Original_CSV_Files/indivs18.txt'), 'individual_donors.csv')
-    load_pac_to_candidate_transactions_from_csv('/Users/ConorGormally/Documents/Fall18/CS/Original_CSV_Files/pacs18.txt')
-    load_pac_to_pac_transactions_from_csv('/Users/ConorGormally/Documents/Fall18/CS/Original_CSV_Files/pacs_other18.txt')
+    save_individuals_table(load_individuals_and_individual_transactions_from_csv(data_location + 'indivs18.txt'), 'individual_donors.csv')
+    load_pac_to_candidate_transactions_from_csv(data_location + 'pacs18.txt')
+    load_pac_to_pac_transactions_from_csv(data_location + 'pacs_other18.txt')
     save_transactions_table('transactions.csv')

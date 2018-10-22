@@ -82,7 +82,7 @@ def load_individuals_and_individual_transactions_from_csv(csv_file_name):
         gender = row[18]
         if(gender in ['m', 'M', 'Male', 'male']):
             gender = 'M'
-        if(gender in ['f', 'F', 'Female', 'female']):
+        elif(gender in ['f', 'F', 'Female', 'female']):
             gender = 'F'
         else:
             gender = 'U'

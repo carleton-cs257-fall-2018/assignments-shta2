@@ -73,10 +73,14 @@ def load_individuals_and_individual_transactions_from_csv(csv_file_name):
     reader = csv.reader(csv_file,  quotechar = '|')
 
     individual_donors = []
+    repeat_donor_check = set([])
     lineNum = 0
     for row in reader:
         assert len(row) == 23
         id = row[2]
+        if(id in repeat_donor_check):
+            continue
+        repeat_donor_check.add(id)
         name = row[3]
         state = row[12]
         gender = row[18]
@@ -90,9 +94,6 @@ def load_individuals_and_individual_transactions_from_csv(csv_file_name):
         individual_donor = {'id': id, 'name': name, 'state':state,
                      'gender': gender, 'industry_id': industry_id}
         individual_donors.append(individual_donor)
-
-        
-        '''
         date = row[8]
         amount = row[9]
         contributor_id = row[2]
@@ -104,7 +105,9 @@ def load_individuals_and_individual_transactions_from_csv(csv_file_name):
             recipient_type = 'Candidate'
         transaction = {'date': date, 'amount': amount, 'contributor_id': contributor_id, 'contributor_type': contributor_type,
                         'recipient_id': recipient_id, 'recipient_type': recipient_type}
-        transactions.append(transaction)'''
+        individual_donors.append(individual_donor)
+        if not(transaction['date'] in [' ', '']):
+            transactions.append(transaction)
     csv_file.close()
     return individual_donors
 
@@ -121,7 +124,8 @@ def load_pac_to_candidate_transactions_from_csv(csv_file_name):
         recipient_type = 'Candidate'
         transaction = {'date': date, 'amount': amount, 'contributor_id': contributor_id, 'contributor_type': contributor_type,
                         'recipient_id': recipient_id, 'recipient_type': recipient_type}
-        transactions.append(transaction)
+        if not(transaction['id'] in [' ', '']):
+            transactions.append(transaction)
     csv_file.close()
 
 def load_pac_to_pac_transactions_from_csv(csv_file_name):
@@ -141,7 +145,8 @@ def load_pac_to_pac_transactions_from_csv(csv_file_name):
         recipient_type = 'PAC'
         transaction = {'date': date, 'amount': amount, 'contributor_id': contributor_id, 'contributor_type': contributor_type,
                         'recipient_id': recipient_id, 'recipient_type': recipient_type}
-        transactions.append(transaction)
+        if not(transaction['date'] in [' ', '']):
+            transactions.append(transaction)
     csv_file.close()
 
 def depipe(piped_string):
@@ -199,13 +204,13 @@ def save_transactions_table(csv_file_name):
                            transaction['recipient_id'], transaction['recipient_type']]
         writer.writerow(transaction_row)
     output_file.close()
-    
+
 
 if __name__ == '__main__':
     pauls_location = 'Users\pbsht\cs257\contributions_data\CampaignFin18\\'
     lab_location = '/Accounts/butterfieldp/Desktop/cs257/'
     data_location = lab_location
-    
+
 
     #dial = csv.Sniffer().sniff('|2018|,|H8AR03074|,|N00041300|,|Josh Mahony (D)|,|D|,|AR03|,|    |,|Y|,|Y|,|C|,|DC|,| |')
     #save_industries_table(load_industries_from_codes('doc/codes.txt'), 'industries.csv')

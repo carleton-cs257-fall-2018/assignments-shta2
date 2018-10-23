@@ -211,6 +211,7 @@ if __name__ == '__main__':
     lab_location = '/Accounts/butterfieldp/Desktop/cs257/'
     data_location = lab_location
 
+
     #dial = csv.Sniffer().sniff('|2018|,|H8AR03074|,|N00041300|,|Josh Mahony (D)|,|D|,|AR03|,|    |,|Y|,|Y|,|C|,|DC|,| |')
     #save_industries_table(load_industries_from_codes('doc/codes.txt'), 'industries.csv')
     #save_pacs_table(load_pacs_from_csv(data_location + 'cmtes18.txt'), 'pacs.csv')

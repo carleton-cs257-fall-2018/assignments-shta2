@@ -231,6 +231,16 @@ if __name__ == '__main__':
     #save_candidates_table(load_candidates_from_csv(data_location + 'cands18.txt'), 'candidates.csv')
     transactions = create_transactions();
     save_individuals_table(load_individuals_and_individual_transactions_from_csv(data_location + 'indivs18.txt'), 'individual_donors.csv')
-    load_pac_to_pac_transactions_from_csv(data_location + 'pac_other18.txt')
     load_pac_to_candidate_transactions_from_csv(data_location + 'pacs18.txt')
-    save_transactions_table('transactions.csv')
+    load_pac_to_pac_transactions_from_csv(data_location + 'pac_other18.txt')
+    #save_transactions_table('transactions.csv')
+    
+    
+    '''
+    totalNum=0
+    noDate=0
+    for transaction in transactions:
+      if transaction['date'] in  [' ', '']:
+         noDate += 1
+      totalNum += 1
+    '''

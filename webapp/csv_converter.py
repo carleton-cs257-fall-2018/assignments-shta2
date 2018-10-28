@@ -6,6 +6,8 @@
 import sys
 import csv
 import re
+import datetime
+import math
 
 party_converter = {'R':'Republican', 'D':'Democrat', 'I':'Independent', 'L':'Libertarian', '3':'3rd Party', 'U':'Unknown', '':'Unknown', ' ':'Unknown'}
 
@@ -78,23 +80,28 @@ def load_individuals_and_individual_transactions_from_csv(csv_file_name):
     for row in reader:
         assert len(row) == 23
         id = row[2]
-        if(id in repeat_donor_check):
-            continue
-        repeat_donor_check.add(id)
-        name = row[3]
-        state = row[12]
-        gender = row[18]
-        if(gender in ['m', 'M', 'Male', 'male']):
-            gender = 'M'
-        elif(gender in ['f', 'F', 'Female', 'female']):
-            gender = 'F'
-        else:
-            gender = 'U'
-        industry_id = row[7]
-        individual_donor = {'id': id, 'name': name, 'state':state,
-                     'gender': gender, 'industry_id': industry_id}
-        individual_donors.append(individual_donor)
+        if(id not in repeat_donor_check):
+            repeat_donor_check.add(id)
+            name = row[3]
+            state = row[12]
+            gender = row[18]
+            if(gender in ['m', 'M', 'Male', 'male']):
+                gender = 'M'
+            elif(gender in ['f', 'F', 'Female', 'female']):
+                gender = 'F'
+            else:
+                gender = 'U'
+            industry_id = row[7]
+            individual_donor = {'id': id, 'name': name, 'state':state,
+                         'gender': gender, 'industry_id': industry_id}
+            individual_donors.append(individual_donor)
+        
+        
         date = row[8]
+        try:
+            datetime.datetime.strptime(date, '%m/%d/%Y')
+        except ValueError:
+            continue
         amount = row[9]
         contributor_id = row[2]
         contributor_type = 'Individual'
@@ -105,9 +112,12 @@ def load_individuals_and_individual_transactions_from_csv(csv_file_name):
             recipient_type = 'Candidate'
         transaction = {'date': date, 'amount': amount, 'contributor_id': contributor_id, 'contributor_type': contributor_type,
                         'recipient_id': recipient_id, 'recipient_type': recipient_type}
-        individual_donors.append(individual_donor)
-        if not(transaction['date'] in [' ', '']):
-            transactions.append(transaction)
+        transactions.append(transaction)
+        
+        
+        lineNum += 1
+        if lineNum % 200000 == 0:
+            print(lineNum/200000)
     csv_file.close()
     return individual_donors
 
@@ -117,6 +127,10 @@ def load_pac_to_candidate_transactions_from_csv(csv_file_name):
 
     for row in reader:
         date = row[5]
+        try:
+            datetime.datetime.strptime(date, '%m/%d/%Y')
+        except:
+            continue
         amount = row[4]
         contributor_id = row[2]
         contributor_type = 'PAC'
@@ -124,8 +138,7 @@ def load_pac_to_candidate_transactions_from_csv(csv_file_name):
         recipient_type = 'Candidate'
         transaction = {'date': date, 'amount': amount, 'contributor_id': contributor_id, 'contributor_type': contributor_type,
                         'recipient_id': recipient_id, 'recipient_type': recipient_type}
-        if not(transaction['id'] in [' ', '']):
-            transactions.append(transaction)
+        transactions.append(transaction)
     csv_file.close()
 
 def load_pac_to_pac_transactions_from_csv(csv_file_name):
@@ -134,7 +147,11 @@ def load_pac_to_pac_transactions_from_csv(csv_file_name):
 
     for row in reader:
         date = row[10]
-        amount = row[11]
+        try:
+            datetime.datetime.strptime(date, '%m/%d/%Y')
+        except ValueError:
+            continue
+        amount = math.floor(float(row[11]))
         if(row[21][0] == 1):
             contributor_id = row[14]
             recipient_id = row[2]
@@ -145,12 +162,8 @@ def load_pac_to_pac_transactions_from_csv(csv_file_name):
         recipient_type = 'PAC'
         transaction = {'date': date, 'amount': amount, 'contributor_id': contributor_id, 'contributor_type': contributor_type,
                         'recipient_id': recipient_id, 'recipient_type': recipient_type}
-        if not(transaction['date'] in [' ', '']):
-            transactions.append(transaction)
+        transactions.append(transaction)
     csv_file.close()
-
-def depipe(piped_string):
-    return piped_string#[1:-1]
 
 def save_industries_table(industries, csv_file_name):
     ''' Save the books in CSV form, with each row containing
@@ -207,7 +220,7 @@ def save_transactions_table(csv_file_name):
 
 
 if __name__ == '__main__':
-    pauls_location = 'Users\pbsht\cs257\contributions_data\CampaignFin18\\'
+    pauls_location = '\\Users\pbsht\cs257\contributions_data\CampaignFin18\\'
     lab_location = '/Accounts/butterfieldp/Desktop/cs257/'
     data_location = lab_location
 
@@ -216,8 +229,8 @@ if __name__ == '__main__':
     #save_industries_table(load_industries_from_codes('doc/codes.txt'), 'industries.csv')
     #save_pacs_table(load_pacs_from_csv(data_location + 'cmtes18.txt'), 'pacs.csv')
     #save_candidates_table(load_candidates_from_csv(data_location + 'cands18.txt'), 'candidates.csv')
-    #transactions = create_transactions();
+    transactions = create_transactions();
     save_individuals_table(load_individuals_and_individual_transactions_from_csv(data_location + 'indivs18.txt'), 'individual_donors.csv')
-    #load_pac_to_candidate_transactions_from_csv(data_location + 'pacs18.txt')
-    #load_pac_to_pac_transactions_from_csv(data_location + 'pac_other18.txt')
-    #save_transactions_table('transactions.csv')
+    load_pac_to_pac_transactions_from_csv(data_location + 'pac_other18.txt')
+    load_pac_to_candidate_transactions_from_csv(data_location + 'pacs18.txt')
+    save_transactions_table('transactions.csv')

@@ -1,15 +1,15 @@
 <!DOCTYPE html>
 <html>
 <head>
-<script src="/Accounts/butterfieldp/Desktop/cs257/assignments-shta2/webapp/main.js" defer></script>
+<script src="main.js" defer></script>
 <title> Follow Da Money </title>
-<link rel="stylesheet" href="/Accounts/butterfieldp/Desktop/cs257/assignments-shta2/webapp/finance.css">
+<link rel="stylesheet" href="finance.css">
 </head>
 
 
 <body>
 
-
+      <div class='row'>
         <div class="column">
             <h1> Follow Da Money </h1>
             <form id='candidateForm'>
@@ -69,7 +69,7 @@
                 <option value="WI">Wisconsin</option>
                 <option value="WY">Wyoming</option>
                 </select><br>
-                <button onclick="candidate_search()" type="button"> Search </button>
+                <button onclick="candidateSearchClicked()" type="button"> Search </button>
             </form>
             <button onclick="candidate_search_advanced()" type="button" id="candidate_search_advanced"> Advanced Search </button>
 
@@ -86,12 +86,13 @@
 
 
 
-            <p id="results_table"></p>
+            <p><table id="results_table"></table></p>
 
         </div>
-        <div class="column">
+        <div class="column" style='float:right'>
             About Us
         </div>
+       </div>
 </body>
 
 </html>

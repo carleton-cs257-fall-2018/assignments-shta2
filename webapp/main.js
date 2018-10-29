@@ -1,5 +1,6 @@
 function getBaseURL() {
-    var baseURL = window.location.protocol + '//' + window.location.hostname + ':' + api_port;
+    //var baseURL = window.location.protocol + '//' + window.location.hostname + ':' + 5105;
+    var baseURL = "http://perlman.mathcs.carleton.edu:5105";
     return baseURL;
 }
 
@@ -21,7 +22,7 @@ function getFormData(formName) {
 function candidateSearchClicked() {
     var url = getBaseURL() + '/candidates';
     var parameters = getFormData('candidateForm');
-    var first = false;
+    var first = true;
     for (var parameter in parameters){
         if (parameters[parameter] != ''){
             if(first){
@@ -50,11 +51,11 @@ function candidateSearchClicked() {
             tableBody += '<tr>';
 
             tableBody += '<a onclick="getCandidate(' + candidatesList[k]['id'] + "')\"> <td>"
-                            + candidatesList[k]['last_name'] + ', '
-                            + candidatesList[k]['first_name'] + '</td>';
-            tableBody += '<td>' + candidatesList[k]['party'] + '</td>';
-            tableBody += '<td>' + candidatesList[k]['state'] + '</td>';
-            tableBody += '<td>' + candidatesList[k]['seat'] + '</td>';
+                            + candidatesList[k][2] + ', '
+                            + candidatesList[k][1] + '</td>';
+            tableBody += '<td>' + candidatesList[k][3] + '</td>';
+            tableBody += '<td>' + candidatesList[k][4]+ '</td>';
+            tableBody += '<td>' + candidatesList[k][5] + '</td>';
             tableBody += '</a> </tr>' ;
         }
 
@@ -64,4 +65,5 @@ function candidateSearchClicked() {
             resultsTableElement.innerHTML = tableBody;
         }
     })
+}
 

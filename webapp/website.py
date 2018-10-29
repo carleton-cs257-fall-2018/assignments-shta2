@@ -15,9 +15,16 @@ if __name__ == '__main__':
     port = sys.argv[2]
     api_port = sys.argv[3]
     app.run(host=host, port=int(port), debug=True)
-    
-    
+
+
 @app.route('/')
 def get_main():
     global api_port
     return flask.render_template('main.html', api_port=api_port)
+
+
+@app.route('/candidate')
+def get_main():
+    global api_port
+    id = flask.request.args.get('id')
+    return flask.render_template('main.html', api_port=api_port, id=id)

@@ -20,4 +20,4 @@ if __name__ == '__main__':
 @app.route('/')
 def get_main():
     global api_port
-    return flask.render_template('test.html', api_port=api_port)
+    return flask.render_template('main.html', api_port=api_port)

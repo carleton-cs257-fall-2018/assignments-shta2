@@ -50,6 +50,15 @@ a:hover {
     border: 1px solid #ccc;
     border-top: none;
 }
+
+table, th, td {
+    border: 1px solid black;
+}
+
+table {
+    border-collapse: collapse;
+}
+
 /*
 #main-wrap > div {min-height: 450px; }
 

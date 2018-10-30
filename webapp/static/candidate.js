@@ -1,4 +1,5 @@
 makeTables();
+document.getElementById("allButton").click();
 
 function openTab(tableName) {
     var i, tabcontent, tablinks;
@@ -22,7 +23,7 @@ function getBaseURL() {
 }
 
 function makeTables(){
-  var url = getBaseURL() + '/transactions?recipient_id=S8AZ00155'; //+ {{ id }};
+  var url = getBaseURL() + '/transactions?recipient_id=' + {{ id }};
 
   fetch(url, {method: 'get'})
   .then((response) => response.json())
@@ -65,10 +66,9 @@ function getContributors(ids){
      }
      url += '?id=' + ids[i][0];
      fetch(url, {method: 'get'}).then((response) => response.json()).then(function(result) {
-        var x = document.getElementsByClassName(result[0][0]);
-        var j;
-        for (j = 0; j < x.length; j++) {
-           x[j].innerHTML = result[0][1];
+        var tableCell = document.getElementsByClassName(result[0][0]);
+        for (var j = 0; j < tableCell.length; j++) {
+           tableCell[j].innerHTML = result[0][1];
         }
      })
    }

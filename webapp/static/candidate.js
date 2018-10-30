@@ -29,15 +29,17 @@ function makeTables(){
   .then(function(donationsList) {
       // Build the table body.
       var tableBody = '';
+      var ids = [];
       for (var k = 0; k < donationsList.length; k++) {
           tableBody += '<tr>';
           tableBody += '<td>' + donationsList[k][0] + '</td>';
           tableBody += '<td>' + donationsList[k][1] + '</td>';
           if(donationsList[k][3] = 'PAC'){
-            tableBody += '<td> <a onclick="getPAC">' + getContributor(donationsList[k][2], donationsList[k][3]) + '</a></td>';
+            tableBody += '<td> <a onclick="getPAC"><div class=' + donationsList[k][2] + '></div></a></td>';
           }else {
-            tableBody += '<td>' + getContributor(donationsList[k][2], donationsList[k][3]) + '</td>';
+            tableBody += '<td><div class=' + donationsList[k][2] + '></div><</td>';
           }
+          ids.push([donationsList[k][2], donationsList[k][3]]);
           tableBody += '<td>' + donationsList[k][3] + '</td>';
           tableBody += '</tr>' ;
       }
@@ -47,33 +49,35 @@ function makeTables(){
       if (resultsTableElement) {
           resultsTableElement.innerHTML = tableBody;
       }
+      getContributors(ids)
   })
 }
 
-function getContributor(id, type){
-  console.log(id + " " + type)
-  var url = getBaseURL() + '/'
-  if(type = 'PAC'){
-    url += 'pacs'
-  }
-  else{
-    url += 'individuals'
-  }
-  url += '?id=' + id;
-  console.log(url)
-  var result = fetch(url, {method: 'get'}).then((response) => response.json());
-  console.log(result)
-  return result[0][1]
-
-  //var result = JSON.stringify(fetch(url, {method: 'get'}).then(function(response) { return response.json(); }));
-  //console.log(resultList = result.split(' '));
-  //return resultList[1]
-  // result => result.json();
-  // //result = await result;
-  //
-  // return result[1];
-
+function getContributors(ids){
+   for (var i=0; i<ids.length; i++){
+     //console.log(ids[i][0] + " " + ids[i][1])
+     var url = getBaseURL() + '/'
+     if(ids[i][1] = 'PAC'){
+       url += 'pacs'
+     }
+     else{
+       url += 'individuals'
+     }
+     url += '?id=' + ids[i][0];
+     fetch(url, {method: 'get'}).then((response) => response.json()).then(function(result) {
+        var x = document.getElementsByClassName(result[0][0]);
+        var j;
+        for (j = 0; j < x.length; j++) {
+           x[j].innerHTML = result[0][1];
+        }
+     })
+   }
 }
+
+function makeHeader(){
+   document.getElementById('name').innerHTML()
+}
+
 
 
 

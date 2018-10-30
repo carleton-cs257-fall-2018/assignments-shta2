@@ -32,7 +32,7 @@ def hello():
 
 @app.route('/candidates')
 def get_candidates():
-    fields = ['id', 'first_name', 'last_name', 'state', 'seat']
+    fields = ['id', 'first_name', 'last_name', 'party', 'state', 'seat']
     return get_entity_data('candidates', fields) 
 
 @app.route('/pacs')

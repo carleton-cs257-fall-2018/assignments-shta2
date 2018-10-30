@@ -27,9 +27,9 @@ function candidateSearchClicked() {
         if (parameters[parameter] != ''){
             if(first){
                 url += '?';
+                first = false;
             } else{
                 url += '&';
-                first = false;
             }
             url += parameter + '=' + parameters[parameter]
         }

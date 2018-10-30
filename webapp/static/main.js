@@ -62,6 +62,7 @@ function candidateSearchClicked() {
     })
 }
 
+//Adds search functionality and table construction for searching PACs
 function pacSearchClicked() {
     var url = getBaseURL() + '/pacs';
     var parameters = getFormData('pacForm');

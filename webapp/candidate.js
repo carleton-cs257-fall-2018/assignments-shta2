@@ -63,7 +63,7 @@ function getContributor(id, type){
   console.log(url)
   var result = fetch(url, {method: 'get'}).then((response) => response.json());
   console.log(result)
-  return[result[1]]
+  return result[0][1]
 
   //var result = JSON.stringify(fetch(url, {method: 'get'}).then(function(response) { return response.json(); }));
   //console.log(resultList = result.split(' '));

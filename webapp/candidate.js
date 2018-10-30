@@ -51,6 +51,7 @@ function makeTables(){
 }
 
 function getContributor(id, type){
+  console.log(id + " " + type)
   var url = getBaseURL() + '/'
   if(type = 'PAC'){
     url += 'pacs'
@@ -59,11 +60,18 @@ function getContributor(id, type){
     url += 'individuals'
   }
   url += '?id=' + id;
-  var result = fetch(url, {method: 'get'})
-  result => result.json();
-  //result = await result;
+  console.log(url)
+  var result = fetch(url, {method: 'get'}).then((response) => response.json());
+  console.log(result)
+  return[result[1]]
 
-  return result[1];
+  //var result = JSON.stringify(fetch(url, {method: 'get'}).then(function(response) { return response.json(); }));
+  //console.log(resultList = result.split(' '));
+  //return resultList[1]
+  // result => result.json();
+  // //result = await result;
+  //
+  // return result[1];
 
 }
 

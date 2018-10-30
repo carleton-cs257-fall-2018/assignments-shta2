@@ -1,4 +1,5 @@
 makeTables();
+document.getElementById("allButton").click();
 
 function openTab(tableName) {
     var i, tabcontent, tablinks;

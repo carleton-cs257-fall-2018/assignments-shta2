@@ -46,7 +46,7 @@ function candidateSearchClicked() {
     // an HTML table displaying the author names and lifespan.
     .then(function(candidatesList) {
         // Build the table body.
-        var tableBody = '';
+        var tableBody = '<tr><th>Name</th><th>Party</th><th>State</th><th>Seat</th>';
         for (var k = 0; k < candidatesList.length; k++) {
             tableBody += '<tr>';
 

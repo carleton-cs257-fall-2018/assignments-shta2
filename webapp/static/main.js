@@ -4,6 +4,12 @@ function getBaseURL() {
     return baseURL;
 }
 
+
+function candidate_search(){
+    var resultsTableElement = document.getElementById('results_table');
+    resultsTableElement.innerHTML = "you submitted a thing!!";
+}
+
 function getFormData(formName) {
     var form = document.getElementById(formName);
     var dictionary = {};
@@ -40,12 +46,11 @@ function candidateSearchClicked() {
     // an HTML table displaying the author names and lifespan.
     .then(function(candidatesList) {
         // Build the table body.
-        var tableBody = '<tr><th>Name</th><th>Party</th><th>State</th><th>Seat</th></tr>';
+        var tableBody = '';
         for (var k = 0; k < candidatesList.length; k++) {
             tableBody += '<tr>';
 
-            tableBody += '<td> <a href= "http://perlman.mathcs.carleton.edu:5205/candidate?id=' + candidatesList[k][0] + '">'
-            //onclick="getCandidate(' + candidatesList[k]['id'] + ")\">"
+            tableBody += '<td> <a onclick="getCandidate(' + candidatesList[k]['id'] + ")\">"
                             + candidatesList[k][2] + ', '
                             + candidatesList[k][1] + '</a> </td>';
             tableBody += '<td>' + candidatesList[k][3] + '</td>';

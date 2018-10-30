@@ -56,7 +56,7 @@ function makeTables(){
 
 function getContributors(ids){
    for (var i=0; i<ids.length; i++){
-     console.log(ids[i][0] + " " + ids[i][1])
+     //console.log(ids[i][0] + " " + ids[i][1])
      var url = getBaseURL() + '/'
      if(ids[i][1] = 'PAC'){
        url += 'pacs'
@@ -65,16 +65,25 @@ function getContributors(ids){
        url += 'individuals'
      }
      url += '?id=' + ids[i][0];
+<<<<<<< HEAD
      console.log(url)
      var result;
      fetch(url, {method: 'get'}).then((response) => response.json()).then(function(ans) {
         console.log(ans);
         var tableCell = document.getElementsByClassName(ans[0][0]);
+=======
+     fetch(url, {method: 'get'}).then((response) => response.json()).then(function(result) {
+        var tableCell = document.getElementsByClassName(result[0][0]);
+>>>>>>> 395924a272228465dd265c619efcce461d341958
         for (var j = 0; j < tableCell.length; j++) {
-           tableCell[j].innerHTML = ans[0][1];
+           tableCell[j].innerHTML = result[0][1];
         }
      })
    }
+}
+
+function makeHeader(){
+   document.getElementById('name').innerHTML()
 }
 
 

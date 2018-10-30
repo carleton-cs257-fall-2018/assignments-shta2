@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<head>
+<script src="candidate.js" defer></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<title> Follow Da Money: Candidate </title>
+<link rel="stylesheet" href="finance.css">
+</head>
+
+<body>
+    <h2 id="name"> </h2>
+    <p id="info"> </p>
+
+    <div class="tab">
+      <button id='allButton' class="tablinks" onclick="openTab('all')">All Contributions</button>
+      <button id='fromPACsButton' class="tablinks" onclick="openTab('fromPACs')">Contributions from PACs</button>
+      <button id = 'fromIndivsButton' class="tablinks" onclick="openTab('fromIndivs')">Contributions from Individual Donors</button>
+    </div>
+
+    <div id="all" class="tabcontent">
+      <table id="allContributions"></table> all
+    </div>
+
+    <div id="fromPACs" class="tabcontent">
+      <table id="contributionsFromPACs"></table> pac
+    </div>
+
+    <div id="fromIndivs" class="tabcontent">
+      <table id="contributionsFromIndividuals"></table> ind
+    </div>
+
+
+
+
+</body>
+
+</html>

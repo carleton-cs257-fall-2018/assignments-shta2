@@ -50,13 +50,13 @@ function candidateSearchClicked() {
         for (var k = 0; k < candidatesList.length; k++) {
             tableBody += '<tr>';
 
-            tableBody += '<a onclick="getCandidate(' + candidatesList[k]['id'] + "')\"> <td>"
+            tableBody += '<td> <a onclick="getCandidate(' + candidatesList[k]['id'] + ")\">"
                             + candidatesList[k][2] + ', '
-                            + candidatesList[k][1] + '</td>';
+                            + candidatesList[k][1] + '</a> </td>';
             tableBody += '<td>' + candidatesList[k][3] + '</td>';
             tableBody += '<td>' + candidatesList[k][4]+ '</td>';
             tableBody += '<td>' + candidatesList[k][5] + '</td>';
-            tableBody += '</a> </tr>' ;
+            tableBody += '</tr>' ;
         }
 
         // Put the table body we just built inside the table that's already on the page.
@@ -66,4 +66,3 @@ function candidateSearchClicked() {
         }
     })
 }
-

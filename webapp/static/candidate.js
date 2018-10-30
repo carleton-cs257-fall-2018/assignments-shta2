@@ -67,7 +67,6 @@ function getContributors(ids){
      url += '?id=' + ids[i][0];
      console.log(url)
      var result;
-     var tim = i;
      fetch(url, {method: 'get'}).then((response) => response.json()).then(function(ans) {
         console.log(ans);
         var tableCell = document.getElementsByClassName(ans[0][0]);

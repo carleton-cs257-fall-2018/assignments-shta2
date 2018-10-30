@@ -15,7 +15,7 @@
             <form id='candidateForm'>
                 Search for Candidate (First Name, Last Name):<br>
                 <input type="text" name="first_name"> <input type="text" name="last_name">
-                
+
                 <select name="state">
                 <option value=""></option>
                 <option value="AL">Alabama</option>
@@ -72,17 +72,17 @@
                 </select><br>
                 <button onclick="candidateSearchClicked()" type="button"> Search </button>
             </form>
-            <button onclick="candidate_search_advanced()" type="button" id="candidate_search_advanced"> Advanced Search </button>
+            <button onclick="candidatSsearchAdvanced()" type="button" id="candidateSearchAdvanced"> Advanced Search </button>
 
 
             <br><br><br>
-            <form>
+            <form id='pacForm'>
                 Search for PAC (Name):<br>
                 <input type="text" name="name"> <br>
-                <input onclick="pac_search()" type="submit" value="Search" id="pac_search">
+                <button onclick="pacSearchClicked()" type="button"> Search </button>
             </form>
             <form>
-                <input onclick="pac_search_advanced()" type="submit" value="Advanced Search" id="pac_search_advanced">
+                <input onclick="pacSearchAdvanced()" type="submit" value="Advanced Search" id="pacSearchAdvanced">
             </form>
 
 

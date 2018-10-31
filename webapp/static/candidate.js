@@ -22,59 +22,65 @@ function getBaseURL() {
     return baseURL;
 }
 
+//build three tables for the candidate based on transactions to that candidate
 function makeTables(){
-  var url = getBaseURL() + '/transactions?recipient_id=' + {{ id }};
+  var url = getBaseURL() + '/transactions?recipient_id=' + id
 
   fetch(url, {method: 'get'})
   .then((response) => response.json())
   .then(function(donationsList) {
-      // Build the table body.
-      var tableBody = '';
-      var ids = [];
-      for (var k = 0; k < donationsList.length; k++) {
-          tableBody += '<tr>';
-          tableBody += '<td>' + donationsList[k][0] + '</td>';
-          tableBody += '<td>' + donationsList[k][1] + '</td>';
-          if(donationsList[k][3] = 'PAC'){
-            tableBody += '<td> <a onclick="getPAC"><div class=' + donationsList[k][2] + '></div></a></td>';
-          }else {
-            tableBody += '<td><div class=' + donationsList[k][2] + '></div><</td>';
+      var tables = {'allContributions': '', 'contributionsFromPACs': '', 'contributionsFromIndividuals': ''}
+      for(table in tables){
+          tables[table] = '<tr><th>Date</th><th>Amount</th><th>Contributor</th><th>Contributor Type</th></tr>';
+          var ids = [];
+          for (var k = 0; k < donationsList.length; k++) {
+              //Skip this entry when building Donations from PACs table
+              if(table == 'contributionsFromPACs' && donationsList[k][3] == 'Individual'){
+                  continue
+              }
+              //Skip this entry when building Individual Donations table
+              if(table == 'contributionsFromIndividuals' && donationsList[k][3] == 'PAC'){
+                  continue
+              }
+              tables[table] += '<tr>';
+              tables[table] += '<td>' + donationsList[k][0] + '</td>';
+              tables[table] += '<td>' + donationsList[k][1] + '</td>';
+              //checks contributor type
+              if(donationsList[k][3] == 'PAC'){
+                tables[table] += '<td> <a onclick="getPAC"><div class=' + donationsList[k][2] + '></div></a></td>';
+              }else {
+    	        tables[table] += '<td><div class=' + donationsList[k][2] + '></div><l/td>';
+              }
+              ids.push([donationsList[k][2], donationsList[k][3]]);
+              tables[table] += '<td>' + donationsList[k][3] + '</td>';
+              tables[table] += '</tr>' ;
           }
-          ids.push([donationsList[k][2], donationsList[k][3]]);
-          tableBody += '<td>' + donationsList[k][3] + '</td>';
-          tableBody += '</tr>' ;
-      }
-
-      // Put the table body we just built inside the table that's already on the page.
-      var resultsTableElement = document.getElementById('allContributions');
-      if (resultsTableElement) {
-          resultsTableElement.innerHTML = tableBody;
+          var resultsTableElement = document.getElementById(table);
+          if (resultsTableElement) {
+              console.log('hello paul and conor');
+              resultsTableElement.innerHTML = tables[table];
+          }
       }
       getContributors(ids)
   })
 }
 
+//gets the string of the contributor name based on the inputted list of [id, contributor_type] pairs
 function getContributors(ids){
    for (var i=0; i<ids.length; i++){
-     //console.log(ids[i][0] + " " + ids[i][1])
      var url = getBaseURL() + '/'
-     if(ids[i][1] = 'PAC'){
-       url += 'pacs'
+     if(ids[i][1] == 'PAC'){
+       url += 'pacs';
      }
      else{
-       url += 'individuals'
+       url += 'individuals';
      }
      url += '?id=' + ids[i][0];
-<<<<<<< HEAD
-     console.log(url)
-     var result;
-     fetch(url, {method: 'get'}).then((response) => response.json()).then(function(ans) {
-        console.log(ans);
-        var tableCell = document.getElementsByClassName(ans[0][0]);
-=======
+     url = url.replace(' ', '%20');
+
+     //
      fetch(url, {method: 'get'}).then((response) => response.json()).then(function(result) {
         var tableCell = document.getElementsByClassName(result[0][0]);
->>>>>>> 395924a272228465dd265c619efcce461d341958
         for (var j = 0; j < tableCell.length; j++) {
            tableCell[j].innerHTML = result[0][1];
         }
@@ -85,8 +91,3 @@ function getContributors(ids){
 function makeHeader(){
    document.getElementById('name').innerHTML()
 }
-
-
-
-
-//{{ api_port }}

@@ -5,11 +5,6 @@ function getBaseURL() {
 }
 
 
-function candidate_search(){
-    var resultsTableElement = document.getElementById('results_table');
-    resultsTableElement.innerHTML = "you submitted a thing!!";
-}
-
 function getFormData(formName) {
     var form = document.getElementById(formName);
     var dictionary = {};
@@ -42,15 +37,13 @@ function candidateSearchClicked() {
     // a Javascript object (in this case, a list of author dictionaries).
     .then((response) => response.json())
 
-    // Once you have your list of author dictionaries, use it to build
-    // an HTML table displaying the author names and lifespan.
     .then(function(candidatesList) {
         // Build the table body.
         var tableBody = '<tr><th>Name</th><th>Party</th><th>State</th><th>Seat</th>';
         for (var k = 0; k < candidatesList.length; k++) {
             tableBody += '<tr>';
 
-            tableBody += '<td> <a onclick="getCandidate(' + candidatesList[k]['id'] + ")\">"
+            tableBody += '<td> <a href= "http://perlman.mathcs.carleton.edu:5205/candidate?id=' + candidatesList[k][0] + '">'
                             + candidatesList[k][2] + ', '
                             + candidatesList[k][1] + '</a> </td>';
             tableBody += '<td>' + candidatesList[k][3] + '</td>';
@@ -59,7 +52,7 @@ function candidateSearchClicked() {
             tableBody += '</tr>' ;
         }
 
-        // Put the table body we just built inside the table that's already on the page.
+        // Put the table body inside the table that's already on the page.
         var resultsTableElement = document.getElementById('results_table');
         if (resultsTableElement) {
             resultsTableElement.innerHTML = tableBody;
@@ -100,7 +93,6 @@ function pacSearchClicked() {
             tableBody += '<tr>';
 
             tableBody += '<td> <a href= "http://perlman.mathcs.carleton.edu:5205/pac?id=' + pacsList[k][0] + '">'
-            //onclick="getCandidate(' + candidatesList[k]['id'] + ")\">"
                             + pacsList[k][1] + '</a> </td>';
             tableBody += '<td>' + pacsList[k][2] + '</td>';
             tableBody += '<td>' + pacsList[k][3] + '</td>';

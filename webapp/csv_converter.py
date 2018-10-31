@@ -56,7 +56,7 @@ def load_candidates_from_csv(csv_file_name):
         if(row[5][0] == 'P'):
             continue
         assert len(row) == 12
-        id = row[1]
+        id = row[2]
         lastname_firstname_party = row[3]
         name_party_list = lastname_firstname_party.split(' ')
         party = party_converter[name_party_list[-1][1:-1]]
@@ -95,8 +95,8 @@ def load_individuals_and_individual_transactions_from_csv(csv_file_name):
             individual_donor = {'id': id, 'name': name, 'state':state,
                          'gender': gender, 'industry_id': industry_id}
             individual_donors.append(individual_donor)
-        
-        
+
+
         date = row[8]
         try:
             datetime.datetime.strptime(date, '%m/%d/%Y')
@@ -113,8 +113,8 @@ def load_individuals_and_individual_transactions_from_csv(csv_file_name):
         transaction = {'date': date, 'amount': amount, 'contributor_id': contributor_id, 'contributor_type': contributor_type,
                         'recipient_id': recipient_id, 'recipient_type': recipient_type}
         transactions.append(transaction)
-        
-        
+
+
         lineNum += 1
         if lineNum % 200000 == 0:
             print(lineNum/200000)
@@ -221,21 +221,22 @@ def save_transactions_table(csv_file_name):
 
 if __name__ == '__main__':
     pauls_location = '\\Users\pbsht\cs257\contributions_data\CampaignFin18\\'
+    conors_location = '/Users/ConorGormally/Documents/Fall18/CS/Original_CSV_Files/'
     lab_location = '/Accounts/butterfieldp/Desktop/cs257/'
-    data_location = lab_location
+    data_location = conors_location
 
 
     #dial = csv.Sniffer().sniff('|2018|,|H8AR03074|,|N00041300|,|Josh Mahony (D)|,|D|,|AR03|,|    |,|Y|,|Y|,|C|,|DC|,| |')
     #save_industries_table(load_industries_from_codes('doc/codes.txt'), 'industries.csv')
     #save_pacs_table(load_pacs_from_csv(data_location + 'cmtes18.txt'), 'pacs.csv')
-    #save_candidates_table(load_candidates_from_csv(data_location + 'cands18.txt'), 'candidates.csv')
-    transactions = create_transactions();
-    save_individuals_table(load_individuals_and_individual_transactions_from_csv(data_location + 'indivs18.txt'), 'individual_donors.csv')
-    load_pac_to_candidate_transactions_from_csv(data_location + 'pacs18.txt')
-    load_pac_to_pac_transactions_from_csv(data_location + 'pac_other18.txt')
+    save_candidates_table(load_candidates_from_csv(data_location + 'cands18.txt'), 'candidates.csv')
+    #transactions = create_transactions();
+    #save_individuals_table(load_individuals_and_individual_transactions_from_csv(data_location + 'indivs18.txt'), 'individual_donors.csv')
+    #load_pac_to_candidate_transactions_from_csv(data_location + 'pacs18.txt')
+    #load_pac_to_pac_transactions_from_csv(data_location + 'pac_other18.txt')
     #save_transactions_table('transactions.csv')
-    
-    
+
+
     '''
     totalNum=0
     noDate=0

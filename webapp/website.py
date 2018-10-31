@@ -17,7 +17,7 @@ def get_main():
 def get_candidate():
     global api_port
     id = flask.request.args.get('id')
-    return flask.render_template('main.html', api_port=api_port, id=id)
+    return flask.render_template('candidate.html', api_port=api_port, id=id)
 
 
 if __name__ == '__main__':

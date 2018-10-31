@@ -1,6 +1,6 @@
 .column {
     float: left;
-    width: 46%;
+    width: 40%;
     padding: 10px;
 }
 
@@ -58,26 +58,3 @@ table, th, td {
 table {
     border-collapse: collapse;
 }
-
-/*
-#main-wrap > div {min-height: 450px; }
-
-#header,
-#footer {
-    min-height: 40px;
-}
-
-#main-wrap {
-    overflow: hidden
-}
-
-#left-side {
-    float: left
-    width: 50%
-}
-
-#right-side {
-    float: right
-    width: 50%
-}
-*/

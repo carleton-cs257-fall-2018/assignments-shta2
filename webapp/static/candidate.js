@@ -65,8 +65,16 @@ function getContributors(ids){
        url += 'individuals'
      }
      url += '?id=' + ids[i][0];
+<<<<<<< HEAD
+     console.log(url)
+     var result;
+     fetch(url, {method: 'get'}).then((response) => response.json()).then(function(ans) {
+        console.log(ans);
+        var tableCell = document.getElementsByClassName(ans[0][0]);
+=======
      fetch(url, {method: 'get'}).then((response) => response.json()).then(function(result) {
         var tableCell = document.getElementsByClassName(result[0][0]);
+>>>>>>> 395924a272228465dd265c619efcce461d341958
         for (var j = 0; j < tableCell.length; j++) {
            tableCell[j].innerHTML = result[0][1];
         }

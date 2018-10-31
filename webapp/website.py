@@ -19,7 +19,7 @@ def get_candidate():
     id = flask.request.args.get('id')
     return flask.render_template('candidate.html', api_port=api_port, id=id)
 
-    
+
 if __name__ == '__main__':
     if len(sys.argv) != 4:
         print('Usage: {0} host port api-port'.format(sys.argv[0]), file=sys.stderr)

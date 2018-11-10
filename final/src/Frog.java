@@ -2,30 +2,18 @@ import javafx.fxml.FXML;
 import javafx.scene.shape.Circle;
 
 public class Frog extends Circle {
-    @FXML private double velocityX;
-    @FXML private double velocityY;
+    private int row = 0;
+
 
     public Frog() {
     }
 
-    public void step() {
-        this.setCenterX(this.getCenterX() + this.velocityX);
-        this.setCenterY(this.getCenterY() + this.velocityY);
+    public void stepUp() {
+        row++;
     }
 
-    public double getVelocityX() {
-        return velocityX;
+    public void setDown(){
+        row--;
     }
 
-    public void setVelocityX(double velocityX) {
-        this.velocityX = velocityX;
-    }
-
-    public double getVelocityY() {
-        return velocityY;
-    }
-
-    public void setVelocityY(double velocityY) {
-        this.velocityY = velocityY;
-    }
 }

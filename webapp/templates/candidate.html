@@ -3,6 +3,7 @@
 <head>
 <script src="static/candidate.js" defer></script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script> var id = '{{ id }}'; </script>
 <title> Follow Da Money: Candidate </title>
 <link rel="stylesheet" href="static/finance.css">
 </head>
@@ -16,6 +17,7 @@
       <button id='fromPACsButton' class="tablinks" onclick="openTab('fromPACs')">Contributions from PACs</button>
       <button id = 'fromIndivsButton' class="tablinks" onclick="openTab('fromIndivs')">Contributions from Individual Donors</button>
     </div>
+
 
     <div id="all" class="tabcontent">
       <table id="allContributions"></table>

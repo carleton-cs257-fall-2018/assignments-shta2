@@ -1,3 +1,4 @@
+package frogger;
 import javafx.fxml.FXML;
 import javafx.scene.shape.Rectangle;
 

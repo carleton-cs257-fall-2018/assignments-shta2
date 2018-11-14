@@ -1,4 +1,4 @@
-Paul Butterfield and Henry Pearson 
+Paul Butterfield and Henry Pearson
 Project Description: Our project is a frogger-esque game where the player will navigate a small "Frog" from the bottom of the screen to the top, 
 all the while dodging horizontally scrolling obstacles of varying intervals and lengths. Upon reaching the top of the screen, the player scores a
 certain amount of points, and then a new level is generated. If the player is hit by an obstacle, the game is over, and the player is returned to 

@@ -20,15 +20,15 @@ public class Main extends Application {
             }
         });
 
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("start.fxml"));
-        //Parent root = (Parent)loader.load();
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("game.fxml"));
+        Parent root = (Parent)loader.load();
         frogger.Controller controller = loader.getController();
 
 
-        primaryStage.setTitle("Kinda Pong");
-        //Scene scene = new Scene(root, 700, 500);
-        //primaryStage.setScene(scene);
-        //scene.setOnKeyPressed(controller);
+        primaryStage.setTitle("Frogger");
+        Scene scene = new Scene(root, 700, 500);
+        primaryStage.setScene(scene);
+        scene.setOnKeyPressed(controller);
         primaryStage.show();
 
         // Solution: once the Stage is displayed, explicitly put the focus on the root node.

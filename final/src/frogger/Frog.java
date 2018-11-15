@@ -4,7 +4,7 @@ import javafx.fxml.FXML;
 import javafx.scene.shape.Circle;
 
 public class Frog extends Circle {
-    private int row = 0;
+    int row = 0;
 
 
     public Frog() {
@@ -16,7 +16,7 @@ public class Frog extends Circle {
         row++;
     }
 
-    public void setDown(){
+    public void stepDown(){
         row--;
     }
 

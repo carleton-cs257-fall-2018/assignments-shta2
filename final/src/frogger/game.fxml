@@ -1,7 +1,10 @@
-<?import javafx.scene.control.Button?>
+<!--
+Paul Butterifeld and Henry Pearson
+
+FXML file for the main game screen
+-->
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.control.Label?>
-<?import javafx.scene.shape.Rectangle?>
 <?import frogger.*?>
 <AnchorPane fx:controller="frogger.Controller" xmlns:fx="http://javafx.com/fxml" prefWidth="1000">
     <AnchorPane fx:id="gameBoard"

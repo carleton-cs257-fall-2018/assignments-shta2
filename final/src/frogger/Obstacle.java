@@ -1,5 +1,10 @@
+/*
+Paul Butterfield and Henry Pearson
+
+Model of the Obstacle objects
+ */
+
 package frogger;
-import javafx.fxml.FXML;
 import javafx.scene.paint.Paint;
 import javafx.scene.shape.Rectangle;
 

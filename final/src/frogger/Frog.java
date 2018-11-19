@@ -1,3 +1,7 @@
+/*
+Paul Butterfield and Henry Pearson
+Model of Frog
+ */
 package frogger;
 import javafx.fxml.FXML;
 import javafx.scene.shape.Circle;

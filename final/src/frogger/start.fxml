@@ -1,10 +1,10 @@
+<!--
+Paul Butterifeld and Henry Pearson
 
-<?import java.lang.*?>
-<?import java.util.*?>
-<?import javafx.scene.*?>
+FXML file for the start menu
+-->
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
-<?import frogger.*?>
 
 
 <AnchorPane xmlns="http://javafx.com/javafx"

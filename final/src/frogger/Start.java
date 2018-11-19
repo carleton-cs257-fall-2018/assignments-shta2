@@ -1,3 +1,7 @@
+/*
+Paul Butterfield and Henry Pearson
+The start menu contains simple score information as well as a button to launch the game.
+ */
 package frogger;
 
 import javafx.event.ActionEvent;
@@ -9,9 +13,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.stage.Stage;
 
-/*
-The start menu contains simple score information as well as a button to launch the game.
- */
+
 public class Start {
     @FXML private Button startButton;
     @FXML private Button resetButton;

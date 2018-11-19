@@ -1,18 +1,18 @@
+/*
+Paul Butterfield and Henry Pearson
+
+Launches JavaFX application to play "Frogger!"
+ */
 package frogger;
 
 import javafx.application.Application;
 import javafx.application.Platform;
 import javafx.event.EventHandler;
 import javafx.fxml.FXMLLoader;
-import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 import javafx.stage.WindowEvent;
-
-import java.io.IOException;
-
-
 
 public class Main extends Application {
 

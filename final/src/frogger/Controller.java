@@ -1,3 +1,9 @@
+/*
+Paul Butterfield and Henry Pearson
+Controls the movement of the frog and the obstacles during gameplay and
+determines when the player has moved to a next level or lost the game.
+ */
+
 package frogger;
 
 import javafx.application.Platform;
@@ -18,10 +24,7 @@ import java.util.TimerTask;
 import java.util.concurrent.TimeUnit;
 
 
-/*
-Controls the movement of the frog and the obstacles during gameplay and
-determines when the player has moved to a next level or lost the game.
- */
+
 public class Controller implements EventHandler<KeyEvent> {
     final static int NUM_ROWS = 7;
     final static int ROW_WIDTH = 40;

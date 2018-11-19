@@ -14,8 +14,16 @@ Frog() this is the player controlled sprite
 Obstacles() this are the sidescrolling obstacles to be avoided
 
 Views: 
-Start Menu
-Game View
+Start Menu (start.fxml)
+Game View   (game.fxml)
 
 Controller:
-Player_Controller
+Start Menu (Start.java)
+Gameplay (Controller.java)
+
+Models
+Frog (Frog.javva)
+Obstacles (Obstacle.java)
+
+The graphics are quite simple but we believe all intended functionality is present.
+

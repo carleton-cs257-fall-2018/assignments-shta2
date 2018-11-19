@@ -20,20 +20,21 @@ public class Main extends Application {
             }
         });
 
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("game.fxml"));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("start.fxml"));
         Parent root = (Parent)loader.load();
-        frogger.Controller controller = loader.getController();
+        frogger.Start controller = loader.getController();
 
 
         primaryStage.setTitle("Frogger");
-        Scene scene = new Scene(root, 700, 500);
+        Scene scene = new Scene(root, 1000, 500);
         primaryStage.setScene(scene);
-        scene.setOnKeyPressed(controller);
+        //scene.setOnKeyPressed(controller);
         primaryStage.show();
 
         // Solution: once the Stage is displayed, explicitly put the focus on the root node.
         // You could, alternatively, go to Controller.initialize and do this.paddle.requestFocus().
-//        root.requestFocus();
+        root.requestFocus();
+        //controller.setInitialObjects();
     }
 
 

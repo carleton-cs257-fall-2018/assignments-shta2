@@ -1,14 +1,21 @@
-<?xml version="1.0" encoding="UTF-8"?>
 
 <?import java.lang.*?>
 <?import java.util.*?>
 <?import javafx.scene.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
+<?import frogger.*?>
+
 
 <AnchorPane xmlns="http://javafx.com/javafx"
             xmlns:fx="http://javafx.com/fxml"
+            prefHeight="400.0" prefWidth="600.0"
+            fx:controller="frogger.Start"> <!--xmlns:fx="http://javafx.com/fxml">-->
 
-            prefHeight="400.0" prefWidth="600.0">
+    <Label fx:id="title" text="Frogger!" style="-fx-font-size: 35pt" layoutX="400" layoutY="100"/>
+    <Label fx:id="scoreLabel" layoutX="430" layoutY="170" text="Your Score: " style="-fx-font-size: 20"/>
+    <Label fx:id="highScoreLabel"/>
+    <Button fx:id="startButton" text="Start New Game" layoutX="430" layoutY="195"/>
+    <Button fx:id="resetButton" text="Reset High Score"/>
 
 </AnchorPane>

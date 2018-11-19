@@ -9,6 +9,14 @@ public class Obstacle extends Rectangle{
 
     public Obstacle(){};
 
+    public double getVelocityX() {
+        return velocityX;
+    }
+
+    public void setVelocityX(double velocityX) {
+        this.velocityX = velocityX;
+    }
+
     public Obstacle(double xPosition, int rowNum) {
         setX(xPosition);
         row = rowNum;
@@ -16,7 +24,7 @@ public class Obstacle extends Rectangle{
         setWidth(90);
         setHeight(40);
         setLayoutY((Controller.NUM_ROWS - rowNum) * Controller.ROW_WIDTH);
-        velocityX = row * 5 + 5;
+        velocityX = 5 * (1 + row);
         if(row%2 == 0 ) {velocityX = -1 * velocityX;}
     }
 

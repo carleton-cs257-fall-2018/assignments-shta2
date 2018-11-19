@@ -10,6 +10,7 @@
 
         <!--<Obstacle fx:id="firstObstacle" layoutX="40" layoutY="300" width="90" height="40" fill="red"/>-->
         <Frog fx:id="frog" layoutX="20"  radius="20" fill="green"/>
+        <Label fx:id="gameOver" layoutX="430" layoutY="170" text="Game Over" style="-fx-opacity:0; -fx-font-size:52"/>
 
 
         <!--<Rectangle fx:id="paddle" AnchorPane.bottomAnchor="15" layoutX="100" width="100" height="10" fill="black" />-->

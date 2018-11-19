@@ -13,8 +13,8 @@
             fx:controller="frogger.Start"> <!--xmlns:fx="http://javafx.com/fxml">-->
 
     <Label fx:id="title" text="Frogger!" style="-fx-font-size: 35pt" layoutX="400" layoutY="100"/>
-    <Label fx:id="scoreLabel" layoutX="430" layoutY="170" text="Your Score: " style="-fx-font-size: 20"/>
-    <Label fx:id="highScoreLabel"/>
+    <Label fx:id="scoreLabel" layoutX="430" layoutY="170" style="-fx-font-size: 20"/>
+    <Label fx:id="highScoreLabel" layoutX="395" layoutY="250" style="-fx-font-size: 20"/>
     <Button fx:id="startButton" text="Start New Game" layoutX="430" layoutY="195"/>
     <Button fx:id="resetButton" text="Reset High Score"/>
 
